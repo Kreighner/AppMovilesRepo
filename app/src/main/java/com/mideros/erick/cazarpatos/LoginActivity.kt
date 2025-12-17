@@ -82,7 +82,18 @@ class LoginActivity : AppCompatActivity() {
         else{
             listadoAGrabar ="" to ""
         }
+        // Guarda la informacion en SharedPreference sin encriptar (o conocido como texto claro)
         manejadorArchivo.SaveInformation(listadoAGrabar)
+        // Guardar informacion encriptada
+        manejadorArchivo = EncriptedSharedPreferencesManager(this)
+        manejadorArchivo.SaveInformation(listadoAGrabar)
+        // Guardar la informacion en archivo interno
+        manejadorArchivo = FileInternalManager(this)
+        manejadorArchivo.SaveInformation(listadoAGrabar)
+        // Guardar la informacion en archivo externo
+        manejadorArchivo = FileExternalManager(this)
+        manejadorArchivo.SaveInformation(listadoAGrabar)
+
     }
 
     private fun validateRequiredData():Boolean{
